@@ -1,53 +1,108 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { updateProduct } from "../../Redux/actions/productActions";
 
 class EditProduct extends Component {
   state = {
     title: "",
+    price: "",
     description: "",
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.product !== prevProps.product) {
+      const product = this.props.product;
+      this.setState({
+        title: product.title,
+        price: product.price,
+        description: product.description,
+      });
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
     });
   };
-  handleSubmit = (e) => {
+  handleSave = (e) => {
     e.preventDefault();
-    console.log(this.state);
+
+    this.props.updateProduct(this.state, this.props.match.params.id);
+    this.props.history.push("/");
   };
   render() {
-    const { auth } = this.props;
+    const { auth, product } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
+
     return (
       <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Edit Product</h5>
-          <div className="input-field">
-            <input type="text" id="title" onChange={this.handleChange} />
-            <label htmlFor="title">Project Title</label>
-          </div>
-          <div className="input-field">
-            <textarea
-              id="content"
-              className="materialize-textarea"
-              onChange={this.handleChange}
-            ></textarea>
-            <label htmlFor="content">Project Content</label>
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1">Create</button>
-          </div>
-        </form>
+        {product ? (
+          <form className="white" onSubmit={this.handleSave}>
+            <h1>Edit {product.title}</h1>
+
+            <div className="input-field">
+              <input
+                type="text"
+                id="title"
+                required
+                minLength="20"
+                maxLength="60"
+                onChange={this.handleChange}
+                className="validate"
+                value={this.state.title}
+              />
+              <label htmlFor="title">Product Title</label>
+            </div>
+
+            <div className="input-field">
+              <input
+                type="number"
+                id="price"
+                required
+                step="0.1"
+                onChange={this.handleChange}
+                value={this.state.price}
+              />
+              <label htmlFor="price">Price</label>
+            </div>
+            <div className="input-field">
+              <textarea
+                id="description"
+                className="materialize-textarea"
+                maxLength="200"
+                onChange={this.handleChange}
+                value={this.state.description}
+              ></textarea>
+              <label htmlFor="description">Product description</label>
+            </div>
+            <div className="input-field">
+              <button className="btn yellow darken-3">Update</button>
+            </div>
+          </form>
+        ) : (
+          <p>Loading</p>
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const products = state.firestore.data.products;
+  const product = products ? products[id] : null;
   return {
+    product: product,
     auth: state.firebase.auth,
   };
 };
 
-export default connect(mapStateToProps)(EditProduct);
+
+export default compose(
+  connect(mapStateToProps, { updateProduct }),
+  firestoreConnect([{ collection: "products" }])
+)(EditProduct);

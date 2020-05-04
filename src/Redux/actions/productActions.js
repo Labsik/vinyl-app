@@ -1,4 +1,10 @@
-import { CREATE_PRODUCT, DELETE_PRODUCT } from "../types";
+import {
+  CREATE_PRODUCT,
+  DELETE_PRODUCT,
+  UPDATE_PRODUCT_ERROR,
+  UPDATE_PRODUCT,
+  GET_PRODUCT,
+} from "../types";
 
 export const createProduct = (product) => (
   dispatch,
@@ -35,6 +41,26 @@ export const deleteProduct = (id) => (
     .delete()
     .then(() => {
       dispatch({ type: DELETE_PRODUCT, payload: id });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateProduct = (updatedProduct, id) => (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  firestore
+    .collection("products")
+    .doc(id)
+    .update({
+      ...updatedProduct,
+    })
+    .then(() => {
+      dispatch({ type: UPDATE_PRODUCT, payload: updatedProduct, id });
     })
     .catch((err) => {
       console.log(err);

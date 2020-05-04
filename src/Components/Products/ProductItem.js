@@ -7,27 +7,35 @@ const ProductItem = ({ product, deleteProduct }) => {
     <div className="col s12 l6">
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light">
-          <img className="activator" src={Img} />
-          <p class="card-title">
+          <img
+            className="activator"
+            // src={Img}
+            src={product.img}
+          />
+          <p className="card-title">
             <strong> {product.title} </strong>
           </p>
         </div>
-        <div class="card-content">
-          <p class="activator grey-text text-darken-4">
-            <i class="material-icons right">more_vert</i>
+        <div className="card-content">
+          <p className="activator grey-text text-darken-4">
+            <i className="material-icons right">more_vert</i>
           </p>
-          <span> Price: {product.price}&#36;</span>
+          <p>
+            <strong>Price:</strong> {product.price}&#36;
+          </p>
         </div>
-        <div class="card-reveal">
-          <h3 class="card-title grey-text ">
+        <div className="card-reveal">
+          <h3 className="card-title grey-text ">
             Your product: {product.title}
-            <i class="material-icons right">close</i>
+            <i className="material-icons right">close</i>
           </h3>
           <h6> Description: {product.description}</h6>
         </div>
         <div>
           <div className="card-action">
-            <Link to="/">Edit</Link>
+            <Link to={"/edit/" + product.id} role="button">
+              Edit
+            </Link>
             <button
               className="btn red darken-1"
               onClick={() => {

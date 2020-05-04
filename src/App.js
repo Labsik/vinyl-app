@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={ProductsList} />
           <Route path="/create" component={CreateProduct} />
-          {/* <Route path="/edit" component={EditProduct} /> */}
+          <Route path="/edit/:id" component={EditProduct} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
         </Switch>

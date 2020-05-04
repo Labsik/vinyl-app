@@ -8,6 +8,7 @@ class CreateProduct extends Component {
     title: "",
     price: "",
     description: "",
+    img: "",
   };
   handleChange = (e) => {
     this.setState({
@@ -21,6 +22,7 @@ class CreateProduct extends Component {
       title: this.state.title,
       price: +this.state.price,
       description: this.state.description,
+      img: this.state.img,
     };
     if (this.state.price < 0.1) {
       alert("Price cannot be less than 1");
@@ -36,7 +38,7 @@ class CreateProduct extends Component {
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">
-        <h5 className="grey-text text-darken-3">Create a New Project</h5>
+        <h5 className="grey-text text-darken-3">Create a New Product</h5>
         <form className="white" onSubmit={this.handleSubmit}>
           <div className="input-field">
             <input

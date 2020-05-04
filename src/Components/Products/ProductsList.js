@@ -13,8 +13,6 @@ class ProductsList extends Component {
 
   render() {
     const { products, auth } = this.props;
-    console.log(products);
-
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
@@ -37,8 +35,6 @@ class ProductsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-
   return {
     products: state.firestore.ordered.products,
     auth: state.firebase.auth,
