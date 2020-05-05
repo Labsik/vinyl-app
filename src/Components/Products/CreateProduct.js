@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { createProduct } from "../../Redux/actions/productActions";
 import { Redirect } from "react-router-dom";
 
+// Unfortunately, there was not enough time
+// and I could not add photos at the same time through the <input type="file"/> at form and Redux,
+// therefore, I decided to add photos via URL
+
 const CreateProduct = ({ createProduct, history, auth }) => {
   const [addProduct, setAddProduct] = useState({
     title: "",
