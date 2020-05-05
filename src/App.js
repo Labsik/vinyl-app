@@ -18,6 +18,7 @@ function App() {
           <Route path="/edit/:id" component={EditProduct} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
+          <Route render={() => <h1>Sorry, page not found</h1>} />
         </Switch>
       </div>
     </BrowserRouter>
