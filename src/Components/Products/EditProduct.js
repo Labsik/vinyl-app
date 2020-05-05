@@ -10,6 +10,7 @@ class EditProduct extends Component {
     title: "",
     price: "",
     description: "",
+    img: "",
   };
 
   componentDidUpdate(prevProps) {
@@ -19,6 +20,7 @@ class EditProduct extends Component {
         title: product.title,
         price: product.price,
         description: product.description,
+        img: product.img,
       });
     }
   }
@@ -79,6 +81,17 @@ class EditProduct extends Component {
                 placeholder="Description"
               ></textarea>
             </div>
+            <div className="input-field">
+              <input
+                type="url"
+                id="img"
+                required
+                onChange={this.handleChange}
+                value={this.state.img}
+                placeholder="Image URL"
+              />
+            </div>
+
             <div className="input-field">
               <button className="btn yellow darken-3">Update</button>
             </div>

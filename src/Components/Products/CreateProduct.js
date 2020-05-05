@@ -67,6 +67,15 @@ const CreateProduct = ({ createProduct, history, auth }) => {
           <label htmlFor="description">Product description</label>
         </div>
         <div className="input-field">
+          <input
+            type="url"
+            id="img"
+            required
+            onChange={(e) => handleChange(e)}
+          />
+          <label htmlFor="img">Image URL</label>
+        </div>
+        <div className="input-field">
           <button className="btn green lighten-1">Create</button>
         </div>
       </form>

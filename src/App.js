@@ -1,7 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-//import "./App.css";
 import Navbar from "./Components/Layout/Navbar";
 import ProductsList from "./Components/Products/ProductsList";
 import CreateProduct from "./Components/Products/CreateProduct";
@@ -12,7 +10,7 @@ import EditProduct from "./Components/Products/EditProduct";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div>
         <Navbar />
         <Switch>
           <Route path="/" exact component={ProductsList} />
