@@ -13,8 +13,6 @@ const SignIn = ({ signIn, authError, auth }) => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
-  const { email, password } = formData;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     signIn(formData);

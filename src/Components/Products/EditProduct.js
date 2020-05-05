@@ -44,7 +44,9 @@ class EditProduct extends Component {
       <div className="container">
         {product ? (
           <form className="white" onSubmit={this.handleSave}>
-            <h1>Edit {product.title}</h1>
+            <h1>
+              Edit <h4> {product.title}</h4>
+            </h1>
 
             <div className="input-field">
               <input
@@ -91,7 +93,6 @@ class EditProduct extends Component {
                 placeholder="Image URL"
               />
             </div>
-
             <div className="input-field">
               <button className="btn yellow darken-3">Update</button>
             </div>

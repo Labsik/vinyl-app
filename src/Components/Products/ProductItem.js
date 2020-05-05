@@ -1,5 +1,4 @@
 import React from "react";
-import Img from "../../sample-1.png";
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ product, deleteItem }) => {
@@ -7,11 +6,7 @@ const ProductItem = ({ product, deleteItem }) => {
     <div className="col s12 l6">
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light">
-          <img
-            className="activator"
-            // src={Img}
-            src={product.img}
-          />
+          <img className="activator" src={product.img} />
           <p className="card-title">
             <strong> {product.title} </strong>
           </p>
