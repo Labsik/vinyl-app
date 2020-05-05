@@ -54,8 +54,8 @@ class EditProduct extends Component {
                 onChange={this.handleChange}
                 className="validate"
                 value={this.state.title}
+                placeholder="Title"
               />
-              <label htmlFor="title">Product Title</label>
             </div>
 
             <div className="input-field">
@@ -66,8 +66,8 @@ class EditProduct extends Component {
                 step="0.1"
                 onChange={this.handleChange}
                 value={this.state.price}
+                placeholder="Price"
               />
-              <label htmlFor="price">Price</label>
             </div>
             <div className="input-field">
               <textarea
@@ -76,8 +76,8 @@ class EditProduct extends Component {
                 maxLength="200"
                 onChange={this.handleChange}
                 value={this.state.description}
+                placeholder="Description"
               ></textarea>
-              <label htmlFor="description">Product description</label>
             </div>
             <div className="input-field">
               <button className="btn yellow darken-3">Update</button>
@@ -100,7 +100,6 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.firebase.auth,
   };
 };
-
 
 export default compose(
   connect(mapStateToProps, { updateProduct }),

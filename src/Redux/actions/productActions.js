@@ -1,9 +1,7 @@
 import {
   CREATE_PRODUCT,
   DELETE_PRODUCT,
-  UPDATE_PRODUCT_ERROR,
   UPDATE_PRODUCT,
-  GET_PRODUCT,
 } from "../types";
 
 export const createProduct = (product) => (
@@ -16,6 +14,7 @@ export const createProduct = (product) => (
     .collection("products")
     .add({
       ...product,
+      createdAt: new Date(),
     })
     .then(() => {
       dispatch({

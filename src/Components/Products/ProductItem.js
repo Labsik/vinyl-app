@@ -2,7 +2,7 @@ import React from "react";
 import Img from "../../sample-1.png";
 import { Link } from "react-router-dom";
 
-const ProductItem = ({ product, deleteProduct }) => {
+const ProductItem = ({ product, deleteItem }) => {
   return (
     <div className="col s12 l6">
       <div className="card">
@@ -39,7 +39,7 @@ const ProductItem = ({ product, deleteProduct }) => {
             <button
               className="btn red darken-1"
               onClick={() => {
-                deleteProduct(product.id);
+                deleteItem(product.id);
               }}
             >
               Delete

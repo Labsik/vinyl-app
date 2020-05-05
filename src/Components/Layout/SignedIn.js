@@ -6,7 +6,7 @@ import { signOut } from "../../Redux/actions/authActions";
 const SignedIn = (props) => {
   return (
     <div>
-      <ul className="right" style={{ paddingLeft: "30px" }}>
+      <ul className="right">
         <li>
           <NavLink to="/create">New Project</NavLink>
         </li>
